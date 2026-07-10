@@ -1,31 +1,144 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Skander Mokhtari</title>
-<style>
-body{
-font-family:Arial;
-background:#111;
-color:white;
-text-align:center;
-padding:40px;
-}
-img{
-width:300px;
-border-radius:15px;
-margin:20px;
-}
-</style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض أعمالي الفنية</title>
+    <style>
+        /* إعدادات الخطوط والخلفية العامة للموقع */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* خلفية رمادية فاتحة جداً مريحة للعين */
+            font-family: 'Times New Roman', Times, serif; /* خط كلاسيكي يناسب الفن التشكيلي */
+            color: #333333;
+            text-align: center;
+        }
 
+        /* الجزء العلوي (الهيدر) */
+        header {
+            padding: 40px 20px 20px 20px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .menu-btn {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: #777;
+            text-transform: uppercase;
+            margin-top: 15px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* الخطين المتوازيين الأسودين تحت العنوان */
+        .divider {
+            border-top: 4px double #000000; /* خط مزدوج أنيق */
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto 40px auto;
+        }
+
+        /* معرض الصور (الغاليري) مع أسهم التنقل */
+        .gallery-container {
+            position: relative;
+            width: 90%;
+            max-width: 500px; /* يضمن أن الصورة تظهر بشكل طولي ومناسب للهواتف */
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* ظل خفيف جداً يبرز اللوحة */
+        }
+
+        .gallery-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* أسهم التنقل اليمين واليسار */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .arrow:hover {
+            color: #000;
+        }
+
+        .arrow-left {
+            left: -40px;
+        }
+
+        .arrow-right {
+            right: -40px;
+        }
+
+        @media (max-width: 600px) {
+            .arrow-left { left: 5px; background: rgba(255,255,255,0.7); }
+            .arrow-right { right: 5px; background: rgba(255,255,255,0.7); }
+        }
+    </style>
+</head>
 <body>
 
-<h1>🎨 Skander Mokhtari</h1>
+    <header>
+        <!-- يمكنك تغيير الاسم هنا إلى اسمك أو اسم معرضك -->
+        <h1>THE ART OF PAINTING</h1>
+        <div class="menu-btn">MENU</div>
+    </header>
 
-<h2>فنان تشكيلي من الجزائر</h2>
+    <!-- الخط الفاصل الكلاسيكي -->
+    <div class="divider"></div>
 
-<p>مرحبًا بكم في معرض أعمالي الفنية.</p>
+    <!-- قسم عرض اللوحات الفنية -->
+    <div class="gallery-container">
+        <!-- زر السهم الأيمن -->
+        <button class="arrow arrow-right" onclick="nextImage()">&#10095;</button>
+        
+        <!-- الصورة الرئيسية (استبدل image1.jpg برابط أو اسم صورتك الحقيقية) -->
+        <img id="painting-slot" src="image1.jpg" alt="لوحة فنية">
+        
+        <!-- زر السهم الأيسر -->
+        <button class="arrow arrow-left" onclick="prevImage()">&#10094;</button>
+    </div>
+
+    <script>
+        // هنا يمكنك وضع أسماء أو روابط لوحاتك الفنية للتنقل بينها
+        const myPaintings = [
+            "image1.jpg", 
+            "image2.jpg", 
+            "image3.jpg"
+        ];
+        
+        let currentIndex = 0;
+        const imgElement = document.getElementById('painting-slot');
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % myPaintings.length;
+            imgElement.src = myPaintings[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + myPaintings.length) % myPaintings.length;
+            imgElement.src = myPaintings[currentIndex];
+        }
+    </script>
 
 </body>
 </html>
